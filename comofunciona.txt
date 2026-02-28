@@ -1,0 +1,74 @@
+El sistema GARS para restaurantes debe caracterizarse por su rapidez, facilidad de uso, seguridad y escalabilidad, de modo que en el futuro sea posible agregar nuevas funciones sin afectar el funcionamiento actual.
+
+A continuación te explico cómo trabaja actualmente uno de nuestros clientes potenciales, para que en base a esta operativa podamos definir correctamente los roles necesarios y la estructura del sistema.
+
+Uno de mis clientes principales es un restaurante italiano ubicado en Milán llamado Dellicatesen. El restaurante se divide en dos áreas principales: sala y cocina.
+
+Sala
+
+En la sala trabajan los camareros, quienes se encargan de tomar los pedidos de los clientes.
+Existe un encargado de sala, cuya responsabilidad es:
+
+Asignar los horarios de trabajo a los empleados de sala, actualmente usando Excel.
+
+Gestionar el inventario de insumos y bebidas como vinos, tragos, etc.
+
+Este inventario hoy se gestiona de manera poco eficiente, ya sea con Excel o incluso con papel y lápiz, lo que dificulta el control.
+
+Además del encargado, en la sala hay otros trabajadores que, además de atender mesas:
+
+Apoyan en tareas relacionadas al inventario.
+
+Cumplen los horarios asignados por el encargado de sala.
+
+Cocina
+
+La cocina tiene una estructura más compleja.
+El chef es el encargado general de toda la cocina y tiene control total sobre ella. y asigna 
+los horarios a todos ellos
+
+La cocina se divide en cinco subáreas:
+
+Salumeria
+
+Primi
+
+Secondi
+
+Dolci
+
+Antipasto
+
+Cada una de estas subáreas tiene su propio encargado (cuoco encargado), y la función de cada encargado es:
+
+Velar por el inventario de su línea.
+
+Gestionar la materia prima.
+
+Gestionar los insumos ya preparados.
+
+Es importante aclarar que materia prima e insumos preparados son dos cosas distintas y deben controlarse por separado.
+
+El chef:
+
+Puede ver y gestionar todas las subáreas.
+
+Es el único que puede asignar horarios a los encargados de cada subárea.
+
+Tiene visibilidad y control de los inventarios de todas las líneas.
+
+Un punto clave es que:
+
+Un cuoco (cocinero) puede ser encargado de una o varias subáreas, por ejemplo primi o dolci.
+
+También existen cocineros que no son encargados de ninguna subárea; estos solo pueden visualizar información, pero no pueden modificar inventarios ni realizar cambios.
+
+Objetivo del sistema
+
+El objetivo es crear un sistema eficiente y escalable, con buenas prácticas de desarrollo y una arquitectura sólida, que permita:
+
+Gestionar correctamente horarios, inventarios y roles.
+
+Definir permisos claros según responsabilidades reales.
+
+Facilitar futuras ampliaciones o nuevas funcionalidades sin complicaciones.
