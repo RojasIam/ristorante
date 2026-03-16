@@ -1,6 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
 import { FaUsers, FaClipboardList, FaCalendarCheck } from "react-icons/fa";
 import ReservationChartsWrapper from "@/components/dashboard/ReservationChartsWrapper";
+import Link from "next/link";
 
 export default async function DashboardPage() {
   const supabase = await createClient();
@@ -105,7 +106,8 @@ export default async function DashboardPage() {
         icon: FaCalendarCheck, 
         color: "text-brand-500", 
         bg: "bg-brand-50",
-        badge: "PRANZO"
+        badge: "PRANZO",
+        href: "/dashboard/prenotazione"
     },
     { 
         title: "Prenotazioni Cena", 
@@ -114,7 +116,8 @@ export default async function DashboardPage() {
         icon: FaCalendarCheck, 
         color: "text-brand-500", 
         bg: "bg-brand-50",
-        badge: "CENA"
+        badge: "CENA",
+        href: "/dashboard/prenotazione"
     },
   ];
 
@@ -151,15 +154,12 @@ export default async function DashboardPage() {
         {stats.map((stat, index) => {
             const Icon = stat.icon;
             
-            return (
-                <div 
-                    key={index} 
-                    className="group relative overflow-hidden bg-white dark:bg-gray-800 p-5 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
-                >
+            const cardInner = (
+                <div className="group relative overflow-hidden bg-white dark:bg-gray-800 p-5 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full">
                     {/* Decorative Background Gradient */}
                     <div className="absolute -right-4 -bottom-4 w-24 h-24 rounded-full opacity-[0.03] group-hover:opacity-[0.08] transition-opacity duration-500 bg-brand-500"></div>
                     
-                    <div className="flex items-start justify-between">
+                    <div className="flex items-start justify-between relative z-10">
                         <div className="flex flex-col gap-1">
                             <span className="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest">
                                 {stat.title}
@@ -176,12 +176,12 @@ export default async function DashboardPage() {
                             </div>
                         </div>
 
-                        <div className={`shrink-0 h-12 w-12 rounded-xl flex items-center justify-center transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3 ${stat.bg} dark:bg-opacity-20`}>
+                        <div className={`shrink-0 h-12 w-12 rounded-xl flex items-center justify-center transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3 ${stat.bg} dark:bg-opacity-20 relative z-10`}>
                             <Icon className={`h-6 w-6 ${stat.color}`} />
                         </div>
                     </div>
 
-                    <div className="mt-4 pt-4 border-t border-gray-50 dark:border-gray-700/50 flex items-center justify-between">
+                    <div className="mt-4 pt-4 border-t border-gray-50 dark:border-gray-700/50 flex items-center justify-between relative z-10">
                         <p className="text-[11px] font-medium text-gray-500 dark:text-gray-400 truncate max-w-[80%]" title={stat.sub}>
                             {stat.sub}
                         </p>
@@ -195,7 +195,17 @@ export default async function DashboardPage() {
                         </div>
                     </div>
                 </div>
-            )
+            );
+
+            return stat.href ? (
+                <Link key={index} href={stat.href} className="block h-full cursor-pointer touch-manipulation">
+                    {cardInner}
+                </Link>
+            ) : (
+                <div key={index} className="h-full">
+                    {cardInner}
+                </div>
+            );
         })}
       </div>
 
