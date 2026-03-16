@@ -8,8 +8,8 @@ export async function POST(request: Request) {
         const body = await request.json();
         
         // Webhook URL for Reservation Confirmation (n8n).
-        // Since the workflow is new, we initially use the test URL so user can configure n8n.
-        const n8nWebhookUrl = process.env.N8N_CONFIRM_WEBHOOK_URL || "http://automatizaciones-n8n-7ea193-157-180-38-85.traefik.me/webhook-test/fe7f9dad-1464-4a57-8b4a-3dcf48d5f8fa";
+        // We now use the production URL so it runs automatically.
+        const n8nWebhookUrl = process.env.N8N_CONFIRM_WEBHOOK_URL || "http://automatizaciones-n8n-7ea193-157-180-38-85.traefik.me/webhook/fe7f9dad-1464-4a57-8b4a-3dcf48d5f8fa";
 
         const response = await fetch(n8nWebhookUrl, {
             method: "POST",
