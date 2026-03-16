@@ -266,23 +266,21 @@ export default function PrenotazionePage() {
   return (
     <div className="space-y-8 animate-in fade-in duration-500">
       
-      {/* Botón Central de Reservas */}
-      <div className="flex justify-center items-center py-8">
-        <button 
-            onClick={() => setIsModalOpen(true)}
-            className="group relative flex items-center gap-3 bg-brand-600 hover:bg-brand-500 text-white px-8 py-4 rounded-full font-bold shadow-lg hover:shadow-xl hover:shadow-brand-500/30 transition-all duration-300 hover:-translate-y-1"
-        >
-            <div className="absolute inset-0 w-full h-full rounded-full bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-md"></div>
-            <FaPlus className="text-xl" />
-            <span className="text-lg tracking-wide">PRENOTA</span>
-        </button>
-      </div>
 
       {/* Tabla de Reservas */}
       <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm overflow-hidden">
-        <div className="p-6 border-b border-gray-100 dark:border-gray-700">
-            <h3 className="font-bold text-lg text-gray-900 dark:text-white">Lista delle Prenotazioni</h3>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">Gestisci i tavoli e invia richieste di recensione via WhatsApp.</p>
+        <div className="p-6 border-b border-gray-100 dark:border-gray-700 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <div>
+                <h3 className="font-bold text-lg text-gray-900 dark:text-white">Lista delle Prenotazioni</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">Gestisci i tavoli e invia richieste di recensione via WhatsApp.</p>
+            </div>
+            <button 
+                onClick={() => setIsModalOpen(true)}
+                className="flex items-center gap-2 bg-brand-600 hover:bg-brand-500 text-white px-5 py-2.5 rounded-xl font-bold shadow-sm hover:shadow-md hover:shadow-brand-500/20 hover:-translate-y-0.5 transition-all duration-300 text-sm"
+            >
+                <FaPlus className="text-sm" />
+                <span className="tracking-wide uppercase">Prenota</span>
+            </button>
         </div>
         
         <div className="overflow-x-auto">
