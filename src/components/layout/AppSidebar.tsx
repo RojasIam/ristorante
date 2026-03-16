@@ -34,6 +34,11 @@ const navItems: NavItem[] = [
     name: "Personale",
     path: "/dashboard/personale",
   },
+  {
+    type: 'item',
+    name: "Prenotazione",
+    path: "/dashboard/prenotazione",
+  },
   
   // CUCINA SECTION
   { type: 'separator', label: 'Cucina', icon: <FaUtensils /> },
