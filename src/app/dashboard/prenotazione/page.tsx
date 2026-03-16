@@ -193,8 +193,27 @@ export default function PrenotazionePage() {
     const { data, error } = await supabase.from("reservations").insert([formData]).select();
     
     if (!error && data) {
-      setReservations(prev => [data[0] as Reservation, ...prev]);
+      const newReservation = data[0] as Reservation;
+      setReservations(prev => [newReservation, ...prev]);
       setIsModalOpen(false);
+      
+      // Send confirmation message to new n8n workflow quietly in the background
+      if (newReservation.customer_phone) {
+          fetch("/api/n8n/confirm", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                  reservation_id: newReservation.id,
+                  customer_name: newReservation.customer_name,
+                  customer_phone: newReservation.customer_phone,
+                  reservation_date: newReservation.reservation_date,
+                  reservation_time: newReservation.reservation_time,
+                  service_type: newReservation.service_type === 'P' ? 'Pranzo' : 'Cena',
+                  cover_count: newReservation.cover_count
+              })
+          }).catch(err => console.error("Error sending confirmation webhook:", err));
+      }
+
       // Reset form
       setFormData({
         customer_name: "", reservation_date: "", reservation_time: "",
